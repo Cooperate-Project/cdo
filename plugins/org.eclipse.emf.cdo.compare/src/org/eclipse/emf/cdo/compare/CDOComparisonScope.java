@@ -43,6 +43,7 @@ import org.eclipse.emf.spi.cdo.InternalCDOSession.MergeData;
 import org.eclipse.emf.spi.cdo.InternalCDOView;
 
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterators;
 
 import java.util.HashSet;
@@ -68,12 +69,12 @@ public abstract class CDOComparisonScope extends AbstractComparisonScope
 
   public Iterator<? extends Resource> getCoveredResources(ResourceSet resourceSet)
   {
-    return Iterators.emptyIterator();
+    return ImmutableSet.<Resource> of().iterator();
   }
 
   public Iterator<? extends EObject> getCoveredEObjects(Resource resource)
   {
-    return Iterators.emptyIterator();
+    return ImmutableSet.<EObject> of().iterator();
   }
 
   public final boolean isResolveProxies()
