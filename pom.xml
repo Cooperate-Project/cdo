@@ -27,13 +27,6 @@
 		<bintray.deploy.plugin.version>0.1.1</bintray.deploy.plugin.version>
 		<bintray.deploy.repository>CDO</bintray.deploy.repository>
 		<bintray.deploy.file>${result.p2.dir}</bintray.deploy.file>
-		<bintray.deploy.serverId>cooperate-bintray</bintray.deploy.serverId>
-		<bintray.deploy.subject>cooperate-project</bintray.deploy.subject>
-		<bintray.deploy.package>updatesite</bintray.deploy.package>
-		<bintray.deploy.snapshotVersionReplacement>latest</bintray.deploy.snapshotVersionReplacement>
-		<bintray.deploy.createVersionIfMissing>true</bintray.deploy.createVersionIfMissing>
-		<bintray.deploy.replaceIfExisting>false</bintray.deploy.replaceIfExisting>
-		<bintray.deploy.replaceIfSnapshot>true</bintray.deploy.replaceIfSnapshot>
 	</properties>
 
 	<dependencies>
@@ -129,7 +122,7 @@
 						<configuration>
 							<target>
 								<ant dir="${basedir}/plugins/org.eclipse.emf.cdo.releng" antfile="build.xml">
-									<target name="all"/>
+									<target name="generate"/>
 								</ant>
 							</target>
 						</configuration>
