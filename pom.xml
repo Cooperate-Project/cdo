@@ -79,7 +79,6 @@
 						</configuration>
 					</execution>
 				</executions>
-
 			</plugin>
 
 			<plugin>
@@ -135,7 +134,12 @@
 						<phase>verify</phase>
 						<configuration>
 							<target>
-								<copy file="${buildroot.dir}/result/output/org.eclipse.emf.cdo.site_*-eclipse.feature/site.p2" todir="${result.p2.dir}" />
+								<copy todir="${result.p2.dir}">
+									<fileset dir="${buildroot.dir}/result/output">
+										<include name="org.eclipse.emf.cdo.site_*-eclipse.feature/site.p2/**" />
+									</fileset>
+									<cutdirsmapper dirs="2"/>
+								</copy>
 							</target>
 						</configuration>
 						<goals>
@@ -144,7 +148,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>de.cooperateproject.maven</groupId>
 				<artifactId>de.cooperateproject.maven.bintray.deploy</artifactId>
