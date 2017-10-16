@@ -14,7 +14,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
 /**
  * @author Stephan Seifermann
- * @since 4.7
+ * @since 4.6
  */
 public class IgnoreDetachmentsIfNoNotificationAdapter extends AdapterImpl
 {
