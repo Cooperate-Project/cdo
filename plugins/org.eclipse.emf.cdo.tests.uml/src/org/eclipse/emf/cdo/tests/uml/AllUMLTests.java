@@ -42,5 +42,6 @@ public class AllUMLTests extends ConfigTestSuite
   {
     testClasses.add(LegacyDynamicPackageTest.class);
     testClasses.add(DynamicProfileTest.class);
+    testClasses.add(MergeUMLModelTests.class);
   }
 }
