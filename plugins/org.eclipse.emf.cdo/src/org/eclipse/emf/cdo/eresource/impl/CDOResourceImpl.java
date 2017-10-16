@@ -1636,12 +1636,30 @@ public class CDOResourceImpl extends CDOResourceLeafImpl implements CDOResource,
     if (!FSMUtil.isTransient(this))
     {
       InternalCDOView view = cdoView();
-      if (view instanceof InternalCDOTransaction) // Bug 376075
+      if (view instanceof InternalCDOTransaction && !ignoreDetachment(object)) // Bug 376075 and 526077
       {
         InternalCDOObject cdoObject = FSMUtil.adapt(object, view);
         CDOStateMachine.INSTANCE.detach(cdoObject);
       }
     }
+  }
+
+  private static boolean ignoreDetachment(EObject object)
+  {
+    if (object == null || object.eDeliver())
+    {
+      return false;
+    }
+
+    for (Adapter adapter : object.eAdapters())
+    {
+      if (adapter instanceof IgnoreDetachmentsIfNoNotificationAdapter)
+      {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   /**
