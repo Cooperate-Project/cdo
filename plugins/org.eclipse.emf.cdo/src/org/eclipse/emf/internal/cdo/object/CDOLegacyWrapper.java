@@ -28,6 +28,7 @@ import org.eclipse.emf.cdo.common.security.CDOPermission;
 import org.eclipse.emf.cdo.common.util.CDOException;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.impl.CDOResourceImpl;
+import org.eclipse.emf.cdo.eresource.impl.IgnoreDetachmentsIfNoNotificationAdapter;
 import org.eclipse.emf.cdo.spi.common.model.InternalCDOClassInfo;
 import org.eclipse.emf.cdo.spi.common.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.util.CDOUtil;
@@ -946,10 +947,12 @@ public abstract class CDOLegacyWrapper extends CDOObjectWrapper
       // Disable notifications from value during the
       // invalidation in case of
       // eInverseAdd/eInverseRemove
+      IgnoreDetachmentsIfNoNotificationAdapter markerAdapter = new IgnoreDetachmentsIfNoNotificationAdapter();
       boolean eDeliver = false;
       if (obj instanceof Notifier)
       {
         Notifier notifier = (Notifier)obj;
+        notifier.eAdapters().add(markerAdapter);
         eDeliver = notifier.eDeliver();
         if (eDeliver)
         {
@@ -963,6 +966,7 @@ public abstract class CDOLegacyWrapper extends CDOObjectWrapper
       {
         Notifier notifier = (Notifier)obj;
         notifier.eSetDeliver(eDeliver);
+        notifier.eAdapters().remove(markerAdapter);
       }
     }
   }
